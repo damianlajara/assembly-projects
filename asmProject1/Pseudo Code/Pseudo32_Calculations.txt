@@ -1,0 +1,111 @@
+32/64 bit Arithmetic Calculations Pseudo-code
+---------------------------------------------
+start main procedure 
+
+Prompt the user for A, B, C, Length and Width; //by moving in the address of it's respective variable into edx/rdx and calling writeString
+Get users input for A, B, C, Length and Width; //from eax/rax, and store it in it's respective variable. Ex: Input for A will be saved in A, and so on...
+
+;calculate A=B-A
+Display equation to user; //so the user knows what input he's entering
+store B in eax/rax
+subtract A from eax/rax
+store the answer in A
+print out answer followed by a newline
+
+;calculate A=-(A+1)
+Display equation to user
+increase A by 1
+negate A
+store the answer in A
+print out answer followed by a newline
+
+;calculate C=A+B
+Display equation to user
+add eax/rax and B
+store answer in C
+print out answer followed by a newline
+
+;calculate B=3B+7
+Display equation to user
+store B in eax/rax
+add B to eax/rax 2 times
+add 7 to eax/rax
+store answer in B
+print out answer followed by a newline
+
+;calculate A=A-A-1
+Display equation to user
+store A in eax/rax
+subtract A from eax/rax
+decrease eax/rax by 1
+store answer in A
+print out answer followed by a newline
+
+;calculate A=B-A-1
+Display equation to user
+store B in eax/rax
+subtract A from eax/rax
+decrease eax/rax by 1
+store answer in A
+print out answer followed by a newline
+
+;calculate C=2A+2B
+Display equation to user
+store A in eax/rax
+store B in eax/rax
+add A to eax/rax
+add B to edx/rdx
+add eax/rax and edx/rdx
+store answer in C
+print out answer followed by a newline
+
+;calculate A=A-2B+4C
+Display equation to user
+store B in edx/rdx
+store C in ebx/rbx
+store A in eax/rax
+add B to edx/rdx
+add C to ebx/rbx 3 times
+subtract edx/rdx from eax/rax
+add ebx/rbx to eax/rax
+store answer in A
+print out answer followed by a newline
+
+;calculate D=2(-A+B-1)+C
+Display equation to user
+negate eax/rax
+add B to eax/rax
+decrease eax/rax by 1
+add eax/rax to itself
+add C to eax/rax
+store answer in D
+print out answer followed by a newline
+
+;calculate Perimeter = 2*Length + 2*Width
+Display equation to user
+store Length in eax/rax
+store Width in edx/rdx
+add Length to eax/rax
+add Width to edx/rdx
+add eax/rax and edx/rdx
+store answer in Perimeter
+print out answer followed by a newline
+
+;calculate Area = Length * Width
+Display equation to user
+store Length in eax/rax
+store Width in edx/rdx
+compare eax/rax and edx/rdx
+move the greater number to ebx/rbx
+mov the smaller number to ecx
+zero out eax/rax; will hold the calculated value
+loop while ecx/rcx > 0 adding ebx/rbx to eax/rax
+store answer left in eax/rax in Area
+print out answer followed by a newline
+
+;Extra credit: repeatedly prompts for the values of A, B, C, Length and Width and then performs the calculations
+create a procedure to hold all of the calculations
+create a label to hold the actual call to the newly created procedure
+jump back to the label after the procedure returns an infinite amount of times until the program is forcefully closed
+
+end main

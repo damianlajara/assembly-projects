@@ -1,0 +1,49 @@
+32 bit Text-based I/O Pseudo-code
+------------------------------------
+create initialized data for prompts
+create un-initialized data for user input
+
+start main
+set edx to the last name initial prompt
+print it out
+read one character from user
+store it in variable for L Initial
+
+set edx to the first name initial prompt
+print it out
+read one character from user
+store it in variable for F Initial
+
+set edx to the middle name initial prompt
+print it out
+read one character from user
+store it in variable for M Initial
+
+print out lInitial followed by a newline ;call write procedures
+print out FInitial followed by a newline
+print out MInitial followed by a newline
+
+set edx to the last name prompt
+print it
+set ecx to the last name prompt size+1
+set edx to last name buffer
+read string from user
+
+set edx to the first name prompt
+print it
+set ecx to the first name prompt size+1
+set edx to first name buffer
+read string from user
+
+set edx to the middle name prompt
+print it
+set ecx to the middle name prompt size+1
+set edx to middle name buffer
+read string from user
+
+set edx to the print name prompt; show a message showing what the name is going to be
+print out last name followed by a newline; call write procedures
+print out first name followed by a newline
+print out middle name followed by a newline
+return 0;
+end main
