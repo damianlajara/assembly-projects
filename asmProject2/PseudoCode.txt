@@ -1,0 +1,202 @@
+﻿32/64 bit Project 2 Pseudo-code
+---------------------------------------------
+start main procedure 
+
+Prompt the user for N
+Get users input for N
+compare N to 0
+if (N < 0) then prompt the user for N again 
+
+;Compute the recursive sum: 1 + 2 + 3 + 4 +...+ N
+create Procedure called recursive sum
+save registers by pushing them on the stack
+zero out eax register, which will hold result
+move N (value user entered) into ecx
+create base case (compare result to 0)
+if (result == 0), exit recursive call(function) and display what is being calculated to the user (so the user knows what’s being calculated) followed by the result and a newline;
+else add what’s in ecx(counter) to the result
+then decrease ecx by 1 and call recursive sum again
+
+;Compute the sum using: N(N+1)/2
+create Procedure called sum
+save registers by pushing them on the stack
+move N (value user entered) into eax
+copy the value to ebx
+increase ebx by one
+multiply newly increased ebx by original value that’s in eax
+divide result by 2
+display what’s being calculated to the user followed by the result and a newline
+return from the function
+
+;Compute the power sum: 1^2 + 2^2 + 3^2 + 4^2 +...+ N^2
+create Procedure called power sum
+save registers by pushing them on the stack
+move N (value user entered) into ecx
+empty out eax which will hold the result
+create base case (compare result to 0)
+if (result == 0), exit recursive call and display what is being calculated to the user followed by the result and a newline;
+else save eax by pushing it on the stack
+copy ecx(holds the original value user entered) into eax
+multiply eax and ecx (ecx^2)
+store eax in ebx, so we dont alter the sum
+restore eax
+add restored value from eax to ebx
+decrease counter(ecx) by 1 and call powersum again
+
+;Compute N!: 1 * 2 * 3 * 4 *...* N
+create a procedure called factorial
+Inside this proc, save ebp by pushing it on the stack
+make ebp point to the same place as esp
+get the parameter passed on the stack (N) and store it in eax
+create base case (compare result to 0)
+if(result < 0) return 1 as the value
+restore ebp and clean stack
+get first parameter again and multiply by result
+else decrease eax by one
+push eax on the stack 
+and call factorial(itself) again
+
+Display what is going to be calculated to the user
+pass N (The value the user entered) as a parameter on the stack
+call factorial procedure
+display result followed by a newline
+
+
+;Compute the surface area: 2(LH + WH + LW)
+Prompt the user for Length, Width and Height
+Get users input for Length, Width and Height (if any is below 0, prompt again)
+
+Create procedure called harmonic mean
+store registers by pushing on stack
+store the length in eax
+multiply eax, which holds the length, by the width
+check if carry flag was set
+if set, display error message to the user and exit function
+else store result into ebx
+move the width into eax
+multiply the width with height
+check if carry flag was set
+if set, display error message to the user and exit function
+else store result into ecx
+move length into eax
+multiply length with height
+check if carry flag was set
+if set, display error message to the user and exit function
+else add ecx(holds W*H)and ebx(holds L*W)
+add eax(L*H) and ecx(holds W*H + L*W) and store in eax
+multiply result by 2
+display what is being calculated followed by the result and a newline
+then return from procedure
+
+
+;Compute the harmonic mean(x,y): (2xy)/(x+y)
+Prompt the user for X and Y
+Get users input for X and Y
+
+
+create procedure called harmonic mean
+save registers by pushing them on the stack
+copy x into eax
+multiply eax and Y
+check if carry flag was set
+if set, display error message to the user and exit function
+else multiply eax by 2
+copy x into ebx
+add ebx and Y
+divide ebx by eax (2xy/xy): (quotient in eax and remainder in edx)
+copy edx in ebx, so remainder won't interfere with writestring
+print out what is being calculated first (quotient) followed by result in eax and a newline
+mov remainder into eax (so when writeDec is called, it will display the remainder this time and not the quotient)
+print out what is being calculated second (remainder) followed by result in eax and a newline
+return from procedure
+
+
+;Compute weighted sum: (weight1*grade1 + weight2*grade2 + weight3*grade3 + weight4*grade4)
+Create procedure called grades
+save registers by pushing them on the stack
+Prompt the user for 4 Grades: grade1, grade2, grade3, grade4 and
+4 weights: weight1, weight2, weight3 and weight4;
+Get the users input for the 4 grades and weights
+
+
+copy grade1 into eax
+multiply with weight1
+check if carry flag was set
+if set, display error message to the user and exit function
+else move eax into ebx
+move grade2 into eax
+multiply eax with grade2
+check if carry flag was set
+if set, display error message to the user and exit function
+else copy eax into ecx
+move grade3 into eax
+multiply eax and weight3
+check if carry flag was set
+if set, display error message to the user and exit function
+else copy eax into esi
+move grade4 into eax
+multiply eax and weight 4
+check if carry flag was set
+if set, display error message to the user and exit function
+else add eax and esi
+add eax and ecx
+add eax and ebx
+store result in weightedSum variable
+
+
+;Compute sum of weights: (weight1 + weight2 + weight3 + weight4)
+move weight1 into eax
+move weight2 into ebx
+add eax and ebx
+move weight3 into ebx
+add eax and ebx
+move weight4 into ebx
+add eax and ebx
+store result in sumOfWeights variable
+
+
+;Compute weighted average: (wtSum / sumWt)
+copy weightedSum into ebx
+exchange eax and ebx
+divide eax by ebx
+store result in weightedAverage
+
+
+display what was calculated first(weighted sum) followed by it’s result and newline
+display what was calculated second(sum of weights) followed by it’s result and a newline
+display what was calculated last(weighted average) followed by it’s result and a newline
+display all the grades and weights the user entered, each in a newline
+return from procedure (exit grades)
+;Compute total coin value and total number of coins
+Prompt the user for the total amount of pennies, nickels, dimes, quarters, half dollar coins, and dollar coins
+Get users input for the total amount of pennies, nickels, dimes, quarters, half dollar coins, and dollar coins (if any is less than zero, re-prompt the user)
+
+
+push total amount of pennies to the top of the fpu stack
+set total amount of coins to the amount of pennies user entered
+push the total amount of coins so far
+multiply total amount of pennies with coins
+pop them out and push in result
+push 100 (percent) to the fpu stack
+divide result by percent
+pop everything except for the result
+then pop result into a variable (storing it for displaying purposes)
+
+
+push total amount of nickels to the top of the fpu stack
+push the total value of nickels
+multiply total amount of nickels with value
+pop them out and push in result
+push 100 (percent) to the fpu stack
+divide result by percent
+pop everything except for the result
+then pop result into a variable (storing it for displaying purposes)
+add it to total value so far
+.
+.
+. 
+Repeat the same process for the rest of the coins
+pop final result(total value) off the fpu stack and display it on the screen
+display all the values the user entered each on its own line
+
+end main
